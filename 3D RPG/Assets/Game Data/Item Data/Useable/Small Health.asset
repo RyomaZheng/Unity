@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d1ff9f452bf01478dfcaf2d16dcab0, type: 3}
+  m_Name: Small Health
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: SmallHealth
+  itemIcon: {fileID: -4296007675895651379, guid: 882142d6526171740b3046d3adfa9922, type: 3}
+  itemAmount: 1
+  description: "\u6D3B\u8840\u4E39\u3002\u6062\u590D10\u8840"
+  stackable: 1
+  weaponPrefab: {fileID: 0}
+  weaponData: {fileID: 0}
+  useableData: {fileID: 11400000, guid: aa22037f334e3ef49934088d899d1101, type: 2}

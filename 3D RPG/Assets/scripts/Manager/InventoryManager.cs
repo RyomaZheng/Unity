@@ -12,8 +12,11 @@ public class InventoryManager : Singleton<InventoryManager>
     }
 
     [Header("Inventory Data")]
+    public InventoryData_SO inventoryTemplate;
     public InventoryData_SO inventoryData;
+    public InventoryData_SO actionTemplate;
     public InventoryData_SO actionData;
+    public InventoryData_SO equipmentTemplate;
     public InventoryData_SO equipmentData;
 
     [Header("ContainerS")]
@@ -33,10 +36,31 @@ public class InventoryManager : Singleton<InventoryManager>
     public Text healthText;
     public Text attackText;
 
+    [Header("Tooltip")]
+    public ItemTooltip itemTooltip;
+
     bool isOpen;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (inventoryTemplate != null)
+        {
+            inventoryData = Instantiate(inventoryTemplate);
+        }
+        if (actionTemplate != null)
+        {
+            actionData = Instantiate(actionTemplate);
+        }
+        if (equipmentTemplate != null)
+        {
+            equipmentData = Instantiate(equipmentTemplate);
+        }
+    }
     private void Start()
     {
+        LoadData();
         inventoryUI.RefreshUI();
         actionUI.RefreshUI();
         equipmentUI.RefreshUI();
@@ -53,6 +77,20 @@ public class InventoryManager : Singleton<InventoryManager>
 
         UpdateStatsText(GameManager.Instance.playerStats.CurrentHealth, GameManager.Instance.playerStats.attackData.minDamage,
             GameManager.Instance.playerStats.attackData.maxDamage);
+    }
+
+    public void SaveData()
+    {
+        SaveManager.Instance.save(inventoryData, inventoryData.name);
+        SaveManager.Instance.save(actionData, actionData.name);
+        SaveManager.Instance.save(equipmentData, equipmentData.name);
+    }
+
+    public void LoadData()
+    {
+        SaveManager.Instance.Load(inventoryData, inventoryData.name);
+        SaveManager.Instance.Load(actionData, actionData.name);
+        SaveManager.Instance.Load(equipmentData, equipmentData.name);
     }
 
     public void UpdateStatsText(int health, int min, int max)

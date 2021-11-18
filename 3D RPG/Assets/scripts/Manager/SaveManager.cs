@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -49,7 +49,7 @@ public class SaveManager : Singleton<SaveManager>
         Load(GameManager.Instance.playerStats.characterData, GameManager.Instance.playerStats.characterData.name);
     }
 
-    private void save(Object data, string key)
+    public void save(Object data, string key)
     {
         var jsonData = JsonUtility.ToJson(data);
         PlayerPrefs.SetString(key, jsonData);
@@ -57,7 +57,7 @@ public class SaveManager : Singleton<SaveManager>
         PlayerPrefs.Save();
     }
 
-    private void Load(Object data, string key)
+    public void Load(Object data, string key)
     {
         if (PlayerPrefs.HasKey(key))
         {

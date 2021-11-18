@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d1ff9f452bf01478dfcaf2d16dcab0, type: 3}
+  m_Name: Super_Sword
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: "\u7EDD\u4E16\u597D\u5251"
+  itemIcon: {fileID: 7826777406107677933, guid: 882142d6526171740b3046d3adfa9922, type: 3}
+  itemAmount: 1
+  description: "\u7F55\u89C1\u7684\u7EDD\u4E16\u597D\u5251"
+  stackable: 0
+  weaponPrefab: {fileID: 1755006667592914, guid: 9e204435832d4f1488e80e14c2a24dd2, type: 3}
+  weaponData: {fileID: 11400000, guid: 0554ff7b409431b42a3121de1706726b, type: 2}
+  weaponAnimator: {fileID: 22100000, guid: d11eeebc2908e7b429452711445b8b7c, type: 2}
+  useableData: {fileID: 0}

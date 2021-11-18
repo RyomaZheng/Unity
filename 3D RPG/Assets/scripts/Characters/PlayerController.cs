@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Ìí¼ÓÊÂ¼ş
+        // æ·»åŠ äº‹ä»¶
         MouseManager.Instance.OnMouseClicked += MoveToTarget;
         MouseManager.Instance.OnEnemyClicked += EventAttack;
         GameManager.Instance.RigisterPlayer(characterStats);
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        // ÒÆ³ıÊÂ¼ş
+        // ç§»é™¤äº‹ä»¶
         MouseManager.Instance.OnMouseClicked -= MoveToTarget;
         MouseManager.Instance.OnEnemyClicked -= EventAttack;
     }
@@ -73,12 +73,12 @@ public class PlayerController : MonoBehaviour
         StopAllCoroutines();
         if (isDead) return;
 
-        // »Ö¸´Ô­ÑùstopDistance
+        // æ¢å¤åŸæ ·stopDistance
         agent.stoppingDistance = stopDistance;
 
-        // agentÉèÖÃĞĞ¶¯¿ªÆô
+        // agentè®¾ç½®è¡ŒåŠ¨å¼€å¯
         agent.isStopped = false;
-        // ÒÆ¶¯µ½Ä¿±êµã
+        // ç§»åŠ¨åˆ°ç›®æ ‡ç‚¹
         agent.destination = target;
     }
 
@@ -91,41 +91,41 @@ public class PlayerController : MonoBehaviour
     private void EventAttack(GameObject target)
     {
         if (isDead) return;
-        // ÅĞ¶Ï¹¥»÷Ä¿±ê²»Îª¿Õ
+        // åˆ¤æ–­æ”»å‡»ç›®æ ‡ä¸ä¸ºç©º
         if (target != null)
         {
-            // ÉèÖÃ¹¥»÷Ä¿±ê
+            // è®¾ç½®æ”»å‡»ç›®æ ‡
             attackTarget = target;
 
-            // ¼ÆËã±©»÷
+            // è®¡ç®—æš´å‡»
             characterStats.isCritical = UnityEngine.Random.value <= characterStats.attackData.criticalChance;
 
-            //¿ªÆôÒÆ¶¯¹¥»÷Ğ­³Ì
+            //å¼€å¯ç§»åŠ¨æ”»å‡»åç¨‹
             StartCoroutine(MoveToAttackTarget());
         }
     }
 
     IEnumerator MoveToAttackTarget()
     {
-        // agentÉèÖÃĞĞ¶¯¿ªÆô
+        // agentè®¾ç½®è¡ŒåŠ¨å¼€å¯
         agent.isStopped = false;
-        // ±ä¸üÎª¹¥»÷·¶Î§
+        // å˜æ›´ä¸ºæ”»å‡»èŒƒå›´
         agent.stoppingDistance = characterStats.attackData.attackRange;
 
-        // playerÃæÏòµĞÈË
+        // playeré¢å‘æ•Œäºº
         transform.LookAt(attackTarget.transform);
 
-        // ÅĞ¶ÏµĞÈËÎ»ÖÃºÍplayerÎ»ÖÃÊÇ·ñ´óÓÚ¹¥»÷¾àÀë£¬ÊÇµÄ»°Ò»Ö±ÍùµĞÈËÎ»ÖÃÒÆ¶¯
+        // åˆ¤æ–­æ•Œäººä½ç½®å’Œplayerä½ç½®æ˜¯å¦å¤§äºæ”»å‡»è·ç¦»ï¼Œæ˜¯çš„è¯ä¸€ç›´å¾€æ•Œäººä½ç½®ç§»åŠ¨
         while (Vector3.Distance(attackTarget.transform.position, transform.position) > characterStats.attackData.attackRange)
         {
             agent.destination = attackTarget.transform.position;
             yield return null;
         }
 
-        // µ½ÁËºóÍ£Ö¹ÒÆ¶¯£¬agentÉèÖÃĞĞ¶¯Í£Ö¹
+        // åˆ°äº†ååœæ­¢ç§»åŠ¨ï¼Œagentè®¾ç½®è¡ŒåŠ¨åœæ­¢
         agent.isStopped = true;
 
-        // ¹¥»÷ÀäÈ´Ê±¼äÍê³Éºó£¬½øĞĞ¹¥»÷¶¯»­
+        // æ”»å‡»å†·å´æ—¶é—´å®Œæˆåï¼Œè¿›è¡Œæ”»å‡»åŠ¨ç”»
         if (lastAttackTime <= 0)
         {
             animator.SetBool("critical", characterStats.isCritical);
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlayMusicByName("Effect/weapon", false);
         }
 
-        // ÖØÖÃ¹¥»÷ÀäÈ´Ê±¼ä
+        // é‡ç½®æ”»å‡»å†·å´æ—¶é—´
         lastAttackTime = characterStats.attackData.coolDown;
     }
 
@@ -157,5 +157,15 @@ public class PlayerController : MonoBehaviour
             targetStats.TakeDamage(characterStats, targetStats);
         }
 
+    }
+
+    public void FootR(AudioClip obj)
+    {
+        AudioManager.Instance.PlayMusic(obj, "Effect", false);
+    }
+
+    public void FootL(AudioClip obj)
+    {
+        AudioManager.Instance.PlayMusic(obj, "Effect", false);
     }
 }

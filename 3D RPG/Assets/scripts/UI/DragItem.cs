@@ -51,32 +51,36 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 {
                     targetHolder = eventData.pointerEnter.gameObject.GetComponentInParent<SlotHolder>();
                 }
-                switch (targetHolder.slotType)
+                // 判断是否目标holder是我的原holder
+                if (targetHolder != InventoryManager.Instance.currentDrag.originalHolder)
                 {
-                    case SlotType.BAG:
-                        SwapItem();
-                        break;
-                    case SlotType.WEAPON:
+                    switch (targetHolder.slotType)
+                    {
+                        case SlotType.BAG:
+                            SwapItem();
+                            break;
+                        case SlotType.WEAPON:
 
-                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Weapon)
-                        {
-                            // 播放音效
-                            AudioManager.Instance.PlayMusicByName("Item/Sword", false);
-                            SwapItem();
-                        }
-                        break;
-                    case SlotType.ARMOR:
-                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Armor)
-                        {
-                            SwapItem();
-                        }
-                        break;
-                    case SlotType.ACTION:
-                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Useable)
-                        {
-                            SwapItem();
-                        }
-                        break;
+                            if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Weapon)
+                            {
+                                // 播放音效
+                                AudioManager.Instance.PlayMusicByName("Item/Sword", false);
+                                SwapItem();
+                            }
+                            break;
+                        case SlotType.ARMOR:
+                            if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Armor)
+                            {
+                                SwapItem();
+                            }
+                            break;
+                        case SlotType.ACTION:
+                            if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Useable)
+                            {
+                                SwapItem();
+                            }
+                            break;
+                    }
                 }
 
                 currentHolder.UpdateItem();

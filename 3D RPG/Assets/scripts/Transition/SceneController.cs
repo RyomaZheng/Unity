@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,7 +26,7 @@ public class SceneController : Singleton<SceneController>, IEndGameObserver
         fadeFinish = true;
     }
 
-    // ´«ËÍ¸øµ½Ä¿±êµã
+    // ä¼ é€ç»™åˆ°ç›®æ ‡ç‚¹
     public void TransitionToDestination(TransitionPoint transitionPoint)
     {
         switch (transitionPoint.transitionType)
@@ -40,17 +40,18 @@ public class SceneController : Singleton<SceneController>, IEndGameObserver
         }
     }
 
-    // ´«ËÍĞ­³Ì
+    // ä¼ é€åç¨‹
     IEnumerator Transition(string sceneName, TransitionDestination.DestinationTag destinationTag)
     {
         SaveManager.Instance.SavePlayerData();
+        InventoryManager.Instance.SaveData();
         SceneFader fade = Instantiate(sceneFaderPrefab);
         if (SceneManager.GetActiveScene().name != sceneName)
         {
             yield return StartCoroutine(fade.FadeOut(1.5f));
             yield return SceneManager.LoadSceneAsync(sceneName);
             yield return Instantiate(playerPrefab, GetDestination(destinationTag).transform.position, GetDestination(destinationTag).transform.rotation);
-            // ¶ÁÈ¡Êı¾İ
+            // è¯»å–æ•°æ®
             SaveManager.Instance.LoadPlayerData();
             yield return StartCoroutine(fade.FadeIn(1.5f));
             switch (sceneName)
@@ -115,8 +116,9 @@ public class SceneController : Singleton<SceneController>, IEndGameObserver
             yield return SceneManager.LoadSceneAsync(scene);
             yield return player = Instantiate(playerPrefab, GameManager.Instance.GetEntrance().position, GameManager.Instance.GetEntrance().rotation);
 
-            // ±£´æÓÎÏ·
+            // ä¿å­˜æ¸¸æˆ
             SaveManager.Instance.SavePlayerData();
+            InventoryManager.Instance.SaveData();
 
             yield return StartCoroutine(fade.FadeIn(1.5f));
             switch (scene)

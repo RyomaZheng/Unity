@@ -20,4 +20,5 @@ MonoBehaviour:
   stackable: 1
   weaponPrefab: {fileID: 0}
   weaponData: {fileID: 0}
+  weaponAnimator: {fileID: 0}
   useableData: {fileID: 11400000, guid: aa22037f334e3ef49934088d899d1101, type: 2}

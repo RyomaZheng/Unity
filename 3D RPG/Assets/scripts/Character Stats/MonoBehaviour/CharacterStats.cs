@@ -15,6 +15,8 @@ public class CharacterStats : MonoBehaviour
 
     private ActtackData_SO baseAttackData;
 
+    private RuntimeAnimatorController baseAnimator;
+
     [Header("Weapon")]
     public Transform weaponSlot;
 
@@ -29,6 +31,7 @@ public class CharacterStats : MonoBehaviour
         }
 
         baseAttackData = Instantiate(attackData);
+        baseAnimator = GetComponent<Animator>().runtimeAnimatorController;
     }
 
     #region Read From Data_SO
@@ -188,6 +191,7 @@ public class CharacterStats : MonoBehaviour
             // 更新属性
             attackData.ApplyWeaponData(weapon.weaponData);
             // 切换动画
+            GetComponent<Animator>().runtimeAnimatorController = weapon.weaponAnimator;
         }
     }
 
@@ -203,6 +207,7 @@ public class CharacterStats : MonoBehaviour
         }
         attackData.RevertWeaponData(baseAttackData);
         // 切换动画
+        GetComponent<Animator>().runtimeAnimatorController = baseAnimator;
     }
 
     #endregion

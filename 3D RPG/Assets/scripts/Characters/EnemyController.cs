@@ -98,6 +98,11 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
             return;
         }
         GameManager.Instance.RemoveObserver(this);
+
+        if (GetComponent<LootSpawner>() && isDead)
+        {
+            GetComponent<LootSpawner>().Spawnloot();
+        }
     }
 
     void SwitchAnimation()
@@ -144,7 +149,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         //agent.enabled = false;
         agent.radius = 0;
 
-        Destroy(gameObject, 60f);
+        Destroy(gameObject, 3f);
     }
 
     private void SwitchGuardState()

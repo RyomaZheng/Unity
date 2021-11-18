@@ -24,7 +24,7 @@ public class AudioManager : Singleton<AudioManager>
         itemSource.playOnAwake = false;
     }
 
-    private void PlayMusic(AudioClip ac, string audioName, bool loop)
+    public void PlayMusic(AudioClip ac, string audioName, bool loop)
     {
         AudioSource temp = null;
         switch (audioName)

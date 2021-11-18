@@ -1,4 +1,4 @@
 repository "3D RPG@ssl://ryoma_ck@sh02-plasticscm.unity.cn:8787"
   path "/"
-    smartbranch "/main/370116630"  
+    smartbranch "/main/370116630" 
      
